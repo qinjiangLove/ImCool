@@ -1,0 +1,80 @@
+
+#eureka配置
+eureka:
+    client:
+        service-url:
+            #注册地址
+           defaultZone: http://${spring.cloud.client.ipAddress}:8001/eureka/
+    #真实ip注册
+    instance:
+        prefer-ip-address: true
+        ip-address: 172.16.5.22
+        instance-id: ${spring.cloud.client.ipAddress}:${server.port}:${spring.application.name}
+#配置中心端口号
+server:
+    port: 9000
+
+spring:
+    application:
+        name: cool-config
+    cloud:
+        config:
+            label: master
+            server:
+              #启用github当注册用心
+                git:
+                    password:
+                    searchPaths: /**
+                    uri: https://github.com/qinjiangLove/cool.git
+                    username: qinjiangLove
+#        stream:
+#            kafka:
+#                binder:
+#                    brokers: 172.16.1.237:9191,172.16.1.238:9191,172.16.1.239:9191
+#                    zk-nodes: 172.16.1.237:1181,172.16.1.238:1181,172.16.1.239:1181
+#                    minPartitionCount: 1
+#                    autoCreateTopics: true
+#                    autoAddPartitions: true
+#            bindings:
+#                goods:
+#                    destination: haxiha-goods
+#                    group: goods
+#                    consumer:
+#                        concurrency: 3
+#                        partitioned: false
+#                order:
+#                    destination: haxiha-order
+#                    group: order
+#                    consumer:
+#                        concurrency: 3
+#                        partitioned: false
+#
+#    kafka:
+#        bootstrap-servers: 172.16.1.237:9191,172.16.1.238:9191,172.16.1.239:9191
+#        producer:
+#            acks: all
+#            retries: 10
+#            batch-size: 16384
+#            linger-ms: 1
+#            buffer-memory: 33554432
+#            request-timeout-ms: 10000
+#            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#        consumer:
+#            group-id: testTopic
+#            enable-auto-commit: false
+#            auto-commit-interval: 1000
+#            auto-offset-reset: earliest
+#            max-poll-records: 100
+#            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#是否启用配置访问安全检查
+management:
+  security:
+    enabled: false
+info:
+    group: Justice League
+    description: 配置中心
+    members: qinjiang
+    tell: 17792754650
+    module: cool-config

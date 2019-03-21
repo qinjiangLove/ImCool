@@ -1,0 +1,28 @@
+#单个eureka
+#应用名称
+spring:
+  application:
+    name: cool-eureka-server
+#应用端口号
+server:
+  port: 8001
+#eureka配置
+eureka:
+  instance:
+    # 注册时使用ip而不是主机名
+    ip-address: 172.16.5.22
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}
+  client:
+    #是否像注册中心注册自己
+    register-with-eureka: false
+    #表示是否从EurekaServer获取注册信息，默认为true。单节点不需要同步其他的EurekaServer节点的数据
+    fetch-registry: false
+    #注册地址
+    service-url:
+      defaultZone: http://${eureka.instance.ip-address}:${server.port}/eureka
+  #关闭注册中心自我保护功能，防止关闭实例无法被剔除
+  server:
+    enable-self-preservation: true
+
+

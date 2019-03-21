@@ -1,0 +1,24 @@
+eureka:
+    instance:
+        prefer-ip-address: true
+        ip-address: 172.16.5.22
+        instance-id: ${spring.cloud.client.ipAddress}:${server.port}:${spring.application.name}
+    client:
+        service-url:
+           defaultZone: http://${spring.cloud.client.ipAddress}:8001/eureka/
+spring:
+    application:
+        name: cool-order
+    cloud:
+        config:
+            discovery:
+                enabled: true
+                service-id: cool-config
+            profile: pre
+server:
+    port: 9002
+
+management:
+  security:
+    enabled: false
+

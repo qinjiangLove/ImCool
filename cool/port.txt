@@ -1,0 +1,6 @@
+cool-eureka:8000
+cool-config:9000
+cool-goods:9001
+cool-order:9002
+cool-zipkin:9060
+cool-gateway:9090
